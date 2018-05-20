@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "debug": "node --nolazy --inspect-brk=9229 index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rgrove/parse-xml": "^1.1.1",
     "davefeedread": "^0.4.14",
-    "feedparser": "^2.2.9",
     "fs-extra": "^6.0.1",
     "turndown": "^4.0.2"
   }
