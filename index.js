@@ -6,6 +6,10 @@ const turndownService = new TurndownService({
     headingStyle: 'atx',
     codeBlockStyle: 'fenced'
 })
+const cheerio = require('cheerio')
+const fetch = require('node-fetch')
+const uuid = require('uuid/v4') // v4 generates random UUIDs
+const url = require('url')
 
 const parseBlog = async (file) => {
     const feed = await parseFeed(file)
@@ -60,15 +64,54 @@ const parseFeed = (file) => {
     })
 }
 
-const writeBlog = async (blog, path) => {
-    if (!path.endsWith('/')) {
-        path = path + '/'
+const streamAsync = (stream) => {
+    return new Promise((resolve, reject) => {
+        stream.on('end', () => {
+            resolve('end');
+        })
+        stream.on('finish', () => {
+            resolve('finish');
+        })
+        stream.on('error', (error) => {
+            reject(error);
+        })
+    })
+}
+
+const writeBlog = async (blog, rootPath) => {
+    if (!rootPath.endsWith('/')) {
+        rootPath = rootPath + '/'
     }
 
     blog.forEach(async post => {
-        const postPath = `${__dirname}/${path}${post.slug}`
+        const postPath = `${__dirname}/${rootPath}${post.slug}`
         await fs.ensureDir(postPath)
 
+        // fetch images
+        const postElements = cheerio.load(post.content)
+        const imagesElements = postElements('img')
+        imagesElements.each(async (index, item) => {
+            try {
+                const imageUrl = item.attribs['src']
+                const imageExtension = path.extname(url.parse(imageUrl).pathname)
+                const imageName = uuid()
+                const imagePath = `${postPath}/${imageName}${imageExtension}`
+
+                const imageResponse = await fetch(imageUrl)
+                const writeStream = fs.createWriteStream(imagePath)
+                imageResponse.body.pipe(writeStream)
+                await streamAsync(writeStream)
+
+                // TODO: not working, suspect await isn't working somewhere up
+                post.content = post.content.replace(imageUrl, `${imageName}${imageExtension}`)
+                post.markdownContent = post.markdownContent.replace(imageUrl, `${imageName}${imageExtension}`)
+            }
+            catch (error) {
+                console.error(error)
+            }
+        })
+
+        // create index.md contents
         const fileContents = 
 `---
 title: ${post.title}

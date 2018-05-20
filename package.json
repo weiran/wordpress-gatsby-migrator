@@ -11,8 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "davefeedread": "^0.4.14",
     "fs-extra": "^6.0.1",
-    "turndown": "^4.0.2"
+    "node-fetch": "^2.1.2",
+    "turndown": "^4.0.2",
+    "uuid": "^3.2.1"
   }
 }
