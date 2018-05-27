@@ -51,12 +51,10 @@ const parse = async (file) => {
             }
         }).toArray()
 
-        if (images.length > 0) {
-            images.forEach(image => {
-                mappedItem.content = mappedItem.content.replace(image.url, image.fileName)
-            })
-            mappedItem.images = images
-        }
+        images.forEach(image => {
+            mappedItem.content = mappedItem.content.replace(image.url, image.fileName)
+        })
+        mappedItem.images = images
 
         return mappedItem
     })
