@@ -23,6 +23,7 @@ const exportPosts = (posts, rootPath) => {
             }
         })
 
+        post.title = post.title.replace(/"/g, "\\\"") // escape quotes
         const fileContents = templates.post(post.title, post.date.toISOString(), post.passthroughUrl, post.markdownContent)
         await fs.outputFile(`${postPath}/index.md`, fileContents)
     })
