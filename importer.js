@@ -9,11 +9,11 @@ const uuid = require('uuid/v4') // v4 generates random UUIDs
 const url = require('url')
 const path = require('path')
 
-const parse = async (file) => {
+const importPosts = async (file) => {
     const feed = await parseFeed(file)
 
     // Filter for only blog posts
-    var items = feed.items.filter((item, index, array) => item['wp:post_type']['#'] === 'post')
+    var items = feed.items.filter((item, index) => item['wp:post_type']['#'] === 'post')
     
     // Map to new object type
     items = items.map(item => {
@@ -80,4 +80,4 @@ const parseFeed = (file) => {
     })
 }
 
-module.exports = { parse: parse }
+module.exports = { importPosts: importPosts }
