@@ -1,6 +1,8 @@
 const fs = require('fs-extra')
 const fetch = require('node-fetch')
 
+const templates = require('./templates.js')
+
 const exportPosts = (posts, rootPath) => {
     if (!rootPath.endsWith('/')) {
         rootPath = rootPath + '/'
@@ -11,14 +13,32 @@ const exportPosts = (posts, rootPath) => {
         await fs.ensureDir(postPath)
 
         post.images.forEach(async image => {
-            const imageResponse = await fetch(image.url)
-            const writeStream = fs.createWriteStream(`${postPath}/${image.fileName}`)
-            imageResponse.body.pipe(writeStream)
-            await utilities.streamAsync(writeStream)
+            try {
+                const imageResponse = await fetch(image.url)
+                const writeStream = fs.createWriteStream(`${postPath}/${image.fileName}`)
+                imageResponse.body.pipe(writeStream)
+                await streamAsync(writeStream)
+            } catch (error) {
+                console.error(error)
+            }
         })
 
         const fileContents = templates.post(post.title, post.date, post.markdownContent)
         await fs.outputFile(`${postPath}/index.md`, fileContents)
+    })
+}
+
+const streamAsync = (stream) => {
+    return new Promise((resolve, reject) => {
+        stream.on('end', () => {
+            resolve('end');
+        })
+        stream.on('finish', () => {
+            resolve('finish');
+        })
+        stream.on('error', (error) => {
+            reject(error);
+        })
     })
 }
 
