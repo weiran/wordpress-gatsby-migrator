@@ -39,30 +39,19 @@ const importPosts = async (file) => {
         }
 
         // Add images array
-        const postElements = cheerio.load(mappedItem.content)
-        const imagesElements = postElements('img')
-        const images = imagesElements.map((index, item) => {
-            const imageName = uuid()
-            const imageUrl = item.attribs['src']
-            const imageExtension = path.extname(url.parse(imageUrl).pathname)
-            return {
-                url: imageUrl,
-                fileName: `${imageName}${imageExtension}`
-            }
-        }).toArray()
-
+        const images = parseImages(mappedItem.content)
         images.forEach(image => {
             mappedItem.content = mappedItem.content.replace(image.url, image.fileName)
         })
         mappedItem.images = images
 
-        return mappedItem
-    })
+        // Strip out content tags
+        mappedItem.content = removeSquarespaceCaptions(mappedItem.content)
 
-    // Add Markdown conversion
-    items = items.map(item => {
-        item.markdownContent = turndownService.turndown(item.content)
-        return item
+        // Add Markdown conversion
+        mappedItem.markdownContent = turndownService.turndown(mappedItem.content)
+
+        return mappedItem
     })
 
     return items
@@ -78,6 +67,27 @@ const parseFeed = (file) => {
             }
         })
     })
+}
+
+const parseImages = (content) => {
+    const postElements = cheerio.load(content)
+    const imagesElements = postElements('img')
+    const images = imagesElements.map((index, item) => {
+        const imageName = uuid()
+        const imageUrl = item.attribs['src']
+        const imageExtension = path.extname(url.parse(imageUrl).pathname)
+        return {
+            url: imageUrl,
+            fileName: `${imageName}${imageExtension}`
+        }
+    }).toArray()
+    return images
+}
+
+const removeSquarespaceCaptions = (post) => {
+    // remove the caption crap that gets put in by squarespace
+    post = post.replace(/(\[caption.*"])(<.*>)(.*\[\/caption])/g, "$2") 
+    return post
 }
 
 module.exports = { importPosts: importPosts }
