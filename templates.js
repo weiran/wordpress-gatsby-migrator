@@ -1,8 +1,9 @@
-const postTemplate = (title, date, content) => {
+const postTemplate = (title, date, passthroughUrl, content) => {
     const post = 
 `---
 title: ${title}
 date: "${date}"
+${passthroughUrl ? `passthroughUrl: ${passthroughUrl}` : ''}
 ---
 
 ${content}`
