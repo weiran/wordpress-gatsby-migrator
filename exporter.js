@@ -23,7 +23,7 @@ const exportPosts = (posts, rootPath) => {
             }
         })
 
-        const fileContents = templates.post(post.title, post.date, post.passthroughUrl, post.markdownContent)
+        const fileContents = templates.post(post.title, post.date.toISOString(), post.passthroughUrl, post.markdownContent)
         await fs.outputFile(`${postPath}/index.md`, fileContents)
     })
 }
