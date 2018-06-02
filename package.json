@@ -7,7 +7,11 @@
     "start": "node index.js",
     "debug": "node --nolazy --inspect-brk=9229 index.js input.xml blog"
   },
-  "author": "Weiran Zhang",
+  "author": {
+    "name": "Weiran Zhang",
+    "email": "weiran@zhang.me.uk",
+    "url": "https://weiran.co"
+  },
   "bugs": {
     "url": "https://github.com/weiran/wordpress-gatsby-migrater/issues"
   },
