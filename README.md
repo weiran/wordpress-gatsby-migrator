@@ -8,6 +8,8 @@ Migrate your Wordpress blog to Gatsby. This tool takes a Wordpress export, and p
 
 ## How to use
 
-Run `npm start INPUT_FILE OUTPUT_DIRECTORY`.
+Install `npm install -g wordpress-gatsby-migrator`
 
-Example `npm start input.xml blog`
+Run `wordpress-gatsby-migrator INPUT_FILE OUTPUT_DIRECTORY`.
+
+(Example `wordpress-gatsby-migrator input.xml blog`)
