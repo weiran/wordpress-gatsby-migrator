@@ -1,14 +1,13 @@
-# Blog Migrator from Squarespace XML export to Gatsby
+# Blog Migrator from Wordpress Export to Gatsby
+Migrate your Wordpress blog to Gatsby. This tool takes a Wordpress export, and produces a local folder structure with the content and images.
 
-* Takes two arguments:
-    1. Squarespace XML export file
-    2. Directory to export to
 * Creates folders and files match post structure
-* Exports contents to Markdown for Gatsby
-* Downloads and exports images locally
+* Converts contents to Markdown and stores in a local folder structure
+* Fetches and saves images locally, updating image links in the content
+* Supports link posts with a `passthrough_url`
 
-## To run
+## How to use
 
-Run `npm start INPUTFILE OUTPUTDIR`.
+Run `npm start INPUT_FILE OUTPUT_DIRECTORY`.
 
-Example `npm start squarespace.xml blog`
+Example `npm start input.xml blog`

@@ -45,7 +45,7 @@ const importPosts = async (file) => {
         })
         mappedItem.images = images
 
-        // Strip out content tags
+        // Strip out Squarespace content tags
         mappedItem.content = removeSquarespaceCaptions(mappedItem.content)
 
         // Add Markdown conversion

@@ -1,15 +1,18 @@
 {
-  "name": "squarespace-gatsby-migrate",
+  "name": "wordpress-gatsby-migrate",
   "version": "1.0.0",
-  "description": "",
+  "description": "Migrate your WordPress blog to Gatsby. This tool takes a Wordpress export, and produces a local folder structure with the content and images.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "debug": "node --nolazy --inspect-brk=9229 index.js squarespace.xml blog",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "node --nolazy --inspect-brk=9229 index.js input.xml blog"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Weiran Zhang",
+  "bugs": {
+    "url": "https://github.com/weiran/wordpress-gatsby-migrate/issues"
+  },
+  "homepage": "https://github.com/weiran/wordpress-gatsby-migrate",
+  "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "davefeedread": "^0.4.14",
