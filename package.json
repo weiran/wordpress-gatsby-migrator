@@ -7,6 +7,9 @@
     "start": "node index.js",
     "debug": "node --nolazy --inspect-brk=9229 index.js input.xml blog"
   },
+  "bin": {
+    "wordpress-gatsby-migrater": "./index.js"
+  },
   "author": {
     "name": "Weiran Zhang",
     "email": "weiran@zhang.me.uk",
