@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/weiran/wordpress-gatsby-migrater",
   "license": "MIT",
+  "keywords": [
+    "wordpress",
+    "gatsby",
+    "markdown",
+    "squarespace"
+  ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "davefeedread": "^0.4.14",
