@@ -8,7 +8,7 @@ Migrate your Wordpress blog to Gatsby. This tool takes a Wordpress export, and p
 
 ## How to use
 
-Install `npm i wordpress-gatsby-migrater -g`
+Install `npm i wordpress-gatsby-migrator -g`
 
 Run `wordpress-gatsby-migrator INPUT_FILE OUTPUT_DIRECTORY`.
 
