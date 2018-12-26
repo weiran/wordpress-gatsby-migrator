@@ -32,9 +32,12 @@ const importPosts = async (file) => {
         // Add passthroughUrl if exists
         const postMeta = item['wp:postmeta']
         if (postMeta) {
-            const metaKey = postMeta['wp:meta_key']['#']
-            if (metaKey == "passthrough_url") {
-                mappedItem.passthroughUrl = postMeta['wp:meta_value']['#']
+            const metaKey = postMeta['wp:meta_key']
+            if (metaKey) {
+                const metaKeyValue = metaKey['#']
+                if (metaKeyValue == "passthrough_url") {
+                    mappedItem.passthroughUrl = postMeta['wp:meta_value']['#']
+                }
             }
         }
 
