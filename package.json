@@ -1,6 +1,6 @@
 {
-  "name": "wordpress-gatsby-migrater",
-  "version": "1.0.2",
+  "name": "wordpress-gatsby-migrator",
+  "version": "1.0.3",
   "description": "Migrate your WordPress blog to Gatsby. This tool takes a Wordpress export, and produces a local folder structure with the content and images.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "debug": "node --nolazy --inspect-brk=9229 index.js input.xml blog"
   },
   "bin": {
-    "wordpress-gatsby-migrater": "./index.js"
+    "wordpress-gatsby-migrator": "./index.js"
   },
   "author": {
     "name": "Weiran Zhang",
@@ -16,9 +16,9 @@
     "url": "https://weiran.co"
   },
   "bugs": {
-    "url": "https://github.com/weiran/wordpress-gatsby-migrater/issues"
+    "url": "https://github.com/weiran/wordpress-gatsby-migrator/issues"
   },
-  "homepage": "https://github.com/weiran/wordpress-gatsby-migrater",
+  "homepage": "https://github.com/weiran/wordpress-gatsby-migrator",
   "license": "MIT",
   "keywords": [
     "wordpress",
