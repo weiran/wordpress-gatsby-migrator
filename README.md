@@ -13,3 +13,11 @@ Install `npm i wordpress-gatsby-migrator -g`
 Run `wordpress-gatsby-migrator INPUT_FILE OUTPUT_DIRECTORY`.
 
 (Example `wordpress-gatsby-migrator input.xml blog`)
+
+---
+<p align="center">
+  <b>By Weiran Zhang</b><br>
+  <a href="https://weiran.co">Website</a> |
+  <a href="https://twitter.com/weiran">Twitter</a> |
+  <a href="https://github.com/weiran">GitHub</a>
+</p>
