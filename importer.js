@@ -12,12 +12,15 @@ const path = require('path')
 const importPosts = async (file) => {
     const feed = await parseFeed(file)
 
+    const isPost = item => item['wp:post_type']['#'] === 'post'
+    const isPublished = item => item['wp:status']['#'] === 'publish'
+
     // Filter for only blog posts
-    var items = feed.items.filter((item, index) => item['wp:post_type']['#'] === 'post')
+    var items = feed.items.filter(isPost).filter(isPublished)
     
     // Map to new object type
     items = items.map(item => {
-        if (item['wp:post_type']['#'] !== 'post') {
+        if (!isPost(item)) {
             return
         }
 
