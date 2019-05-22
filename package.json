@@ -1,6 +1,6 @@
 {
   "name": "wordpress-gatsby-migrator",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Migrate your WordPress blog to Gatsby. This tool takes a Wordpress export, and produces a local folder structure with the content and images.",
   "main": "index.js",
   "scripts": {
